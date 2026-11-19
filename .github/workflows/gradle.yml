@@ -32,7 +32,12 @@ jobs:
 
       - name: Execute Gradle build
         run: ./gradlew build -s
-
+      - name: Upload WorldGuard JAR
+        uses: actions/upload-artifact@v6
+        with:
+          name: WorldGuard-${{ matrix.os }}
+          path: worldguard-bukkit/build/libs/*-dist.jar
+          if-no-files-found: error
       - uses: actions/upload-artifact@v6
         name: Archive Reports
         if: always()
